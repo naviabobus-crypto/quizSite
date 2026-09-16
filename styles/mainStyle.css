@@ -1,0 +1,26 @@
+html, body, .pageSelector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+html, body {
+    margin: 0;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgb(178, 226, 255),
+        rgb(145, 191, 217)
+        );
+}
+.pageSelector {
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    height: 11%;
+    background: linear-gradient(
+        to right, 
+        rgb(80, 192, 255),
+        rgb(49, 148, 255)
+        )
+}
