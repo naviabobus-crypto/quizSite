@@ -34,23 +34,29 @@ html, body {
     border-width: 2px;
     border-color: black;
     color: #0084ff;
+    text-align: center;
 }
 h1, input, button {
     margin: 2px;
     padding: 10px;
+}
+p {
+    margin: 2px;
+    color: black;
+    opacity: 50%;
 }
 .quiz {
     height: 100%;
     width: 100%;
     color: white;
 }
-.question {
+.timerContainer {
+    height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1vw;
     padding: 1vw;
-    height: 60%;
     border-style: solid;
     border-radius: 15px;
     border-color: black;
@@ -59,7 +65,24 @@ h1, input, button {
         to right, 
         rgb(80, 192, 255),
         rgb(49, 148, 255)
-        )
+    );
+}
+.question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vw;
+    padding: 1vw;
+    height: 45%;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: black;
+    font-size: 3vw;
+    background: linear-gradient(
+        to right, 
+        rgb(80, 192, 255),
+        rgb(49, 148, 255)
+    );
 }
 .answers {
     height: 25%;
@@ -82,7 +105,7 @@ h1, input, button {
         to right, 
         rgb(80, 192, 255),
         rgb(49, 148, 255)
-        );
+    );
     transition-duration: 0.2s;
 }
 .answer:hover {
