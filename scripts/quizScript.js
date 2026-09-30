@@ -90,7 +90,6 @@ function setText(questionsOBJ, userName) { // установка вопроса 
         bg.className = "nameInserterBG"
         let resultContainer = document.createElement("div")
         resultContainer.className = "nameInserter"
-
         let text1 = document.createElement("h1")
         text1.textContent = userName + ", поздравляем с прохождением!"
         let text2 = document.createElement("p")
@@ -111,12 +110,10 @@ function setText(questionsOBJ, userName) { // установка вопроса 
 function answering(questionsOBJ, currentQuestionString, userName) { // при ответе
     let comparing = questionsOBJ[currentQuestionString]
     let userTime = Number(document.getElementsByClassName("timerContainer")[0].textContent.slice(31, 33))
-
     if (event.target.textContent == comparing[comparing["correct"]]) {
-        score += defaultAnswerScore * Number((1 + (userTime / maxTimer)).toFixed(2))
+        score = Number((score + defaultAnswerScore * Number(1 + userTime / maxTimer)).toFixed(2))
     }
     currentQuestionNumber += 1
-
     let oldPage = document.getElementsByClassName("quiz")[0]
     oldPage.remove()
     setText(questionsOBJ, userName)

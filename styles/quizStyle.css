@@ -78,6 +78,7 @@ p {
     border-radius: 15px;
     border-color: black;
     font-size: 3vw;
+    text-align: center;
     background: linear-gradient(
         to right, 
         rgb(80, 192, 255),
