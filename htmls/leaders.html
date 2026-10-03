@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz!</title>
+    <title>Лидеры</title>
     <link rel="stylesheet" href="../styles/mainStyle.css">
     <link rel="stylesheet" href="../styles/homeStyle.css">
+    <style>
+        .leadersContainer {
+            width: 70%;
+            margin: 8% auto;
+            text-align: center;
+        }
+
+        .leadersContainer h1 {
+            font-size: 3vw;
+        }
+
+        #leadersTable {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.5vw;
+        }
+
+        #leadersTable th,
+        #leadersTable td {
+            padding: 15px;
+            border: 2px solid black;
+        }
+
+        #leadersTable th {
+            background: rgb(80, 160, 220);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="pageSelector">
@@ -18,5 +46,45 @@
             <h1 id="pagesText">Лидеры</h1>
         </a>
     </div>
+
+    <div class="leadersContainer">
+        <h1>🏆 Таблица лидеров</h1>
+        <table id="leadersTable">
+            <thead>
+                <tr>
+                    <th>Место</th>
+                    <th>Никнейм</th>
+                    <th>Очки</th>
+                </tr>
+            </thead>
+            <tbody id="leadersBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        fetch("../api/get_leaders.php")
+            .then(response => response.json())
+            .then(leaders => {
+                let body = document.getElementById("leadersBody")
+
+                leaders.forEach(leader => {
+                    let row = document.createElement("tr")
+
+                    let place = document.createElement("td")
+                    let nickname = document.createElement("td")
+                    let score = document.createElement("td")
+
+                    place.textContent = leader.place
+                    nickname.textContent = leader.nickname
+                    score.textContent = leader.score
+
+                    row.append(place, nickname, score)
+                    body.append(row)
+                })
+            })
+            .catch(error => {
+                console.error("Ошибка загрузки лидеров:", error)
+            })
+    </script>
 </body>
 </html>

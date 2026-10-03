@@ -86,6 +86,8 @@ function setText(questionsOBJ, userName) { // установка вопроса 
         document.body.append(quizHTML)
     }
     else { // если все вопросы пройдены
+        saveResult(userName, score)
+
         let bg = document.createElement("div")
         bg.className = "nameInserterBG"
         let resultContainer = document.createElement("div")
@@ -107,6 +109,28 @@ function setText(questionsOBJ, userName) { // установка вопроса 
     }
 
 }
+function saveResult(userName, score) {
+    fetch("../api/save_result.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nickname: userName,
+            score: score
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (!data.success) {
+            console.error("Не удалось сохранить результат:", data.message)
+        }
+    })
+    .catch(error => {
+        console.error("Ошибка подключения к базе данных:", error)
+    })
+}
+
 function answering(questionsOBJ, currentQuestionString, userName) { // при ответе
     let comparing = questionsOBJ[currentQuestionString]
     let userTime = Number(document.getElementsByClassName("timerContainer")[0].textContent.slice(31, 33))
